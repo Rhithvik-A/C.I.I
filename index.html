@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SiteShield | AI Construction Safety & Workforce Protection</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            safety: {
+              yellow: '#f59e0b',
+              orange: '#ea580c',
+              green: '#10b981',
+              red: '#ef4444',
+              dark: '#090d16',
+              card: '#111827'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- ======================================================== -->
+  <!-- INITIAL FULL-SCREEN LOGIN GATE & CHILD LABOR VERIFICATION -->
+  <!-- ======================================================== -->
+  <div id="initial-login-gate" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-xl flex flex-col justify-between overflow-y-auto p-4 sm:p-6 transition-all duration-300">
+    
+    <!-- Top Bar with Logo & Lang/Theme -->
+    <div class="max-w-5xl w-full mx-auto flex items-center justify-between py-2 border-b border-slate-800">
+      <div class="flex items-center gap-3">
+        <img src="contruction safty app logo.png" alt="SiteShield Logo" class="w-9 h-9 object-contain rounded-xl shadow border border-amber-500/40 p-0.5 bg-white/10" />
+        <span class="font-extrabold text-base tracking-tight bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-300 bg-clip-text text-transparent">SiteShield</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <select id="init-login-lang" class="bg-slate-800 text-slate-200 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer">
+          <option value="en">🇺🇸 English</option>
+          <option value="ar">🇦🇪 العربية (AR)</option>
+          <option value="hi">🇮🇳 हिन्दी (HI)</option>
+          <option value="ta">🇮🇳 தமிழ் (Tamil)</option>
+          <option value="ml">🇮🇳 മലയാളം (Malayalam)</option>
+          <option value="fr">🇫🇷 Français (French)</option>
+          <option value="es">🇪🇸 Español (ES)</option>
+          <option value="tl">🇵🇭 Tagalog (TL)</option>
+          <option value="ur">🇵🇰 اردو (UR)</option>
+        </select>
+        <button id="init-theme-toggle-btn" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-xs">
+          <span>☀️</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Centered Card Container -->
+    <div class="max-w-xl w-full mx-auto my-auto py-6">
+      <div class="bg-slate-900 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+        
+        <!-- Brand Header -->
+        <div class="text-center space-y-2">
+          <div class="relative inline-block">
+            <img src="contruction safty app logo.png" alt="SiteShield Logo" class="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-2xl shadow-2xl p-1 bg-white/10 backdrop-blur-md border-2 border-amber-500/50 mx-auto" />
+            <span class="absolute -bottom-1 -right-1 px-2 py-0.5 rounded-full bg-emerald-500 text-slate-950 font-bold text-[10px] uppercase shadow">
+              Active Portal
+            </span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight">SiteShield</h1>
+          <p class="text-xs text-slate-400 max-w-md mx-auto" data-i18n="appSubtitle">AI Construction Safety, PPE & Child Labor Protection Platform</p>
+        </div>
+
+        <!-- Form -->
+        <form id="initial-login-form" class="space-y-4">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Full Name Input -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">
+                Full Name <span class="text-amber-400">*</span>
+              </label>
+              <input type="text" id="init-login-name" required placeholder="e.g. Ahmed Al-Mansoor" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+            </div>
+
+            <!-- Worker ID Input -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">
+                Worker Badge / ID <span class="text-amber-400">*</span>
+              </label>
+              <input type="text" id="init-login-id" required placeholder="e.g. WRK-101" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono" />
+            </div>
+          </div>
+
+          <!-- MANDATORY AGE SECTION & CHILD LABOR PROTECTION -->
+          <div class="bg-amber-500/5 border border-amber-500/30 rounded-2xl p-4 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <label class="text-xs font-bold text-amber-400 flex items-center gap-1.5" data-i18n="ageSectionTitle">
+                <span>⚖️</span> <span>Mandatory Age Verification & Legal Compliance</span>
+              </label>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold font-mono">18+ LAW</span>
+            </div>
+
+            <div>
+              <div class="relative">
+                <input type="number" id="init-login-age" min="1" max="99" required value="28" placeholder="Enter age (must be 18+)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" />
+                <span class="absolute right-3.5 top-2.5 text-xs text-slate-400 font-semibold">years old</span>
+              </div>
+            </div>
+
+            <!-- Live Legal Notice and Dynamic Feedback -->
+            <div id="init-age-feedback" class="text-[11px] text-emerald-400 font-semibold flex items-center gap-1.5">
+              <span>✓ Verified Adult Worker (18+): Legally eligible for construction duty.</span>
+            </div>
+
+            <div class="text-[10px] text-slate-400 leading-relaxed border-t border-slate-800/80 pt-2" data-i18n="ageLegalNotice">
+              ⚖️ OSHA & ILO Convention 138/182: Minimum legal age for hazardous construction work is 18 years. Underage entry will be blocked immediately.
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Trade Role -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1" data-i18n="selectRole">Select Role</label>
+              <select id="init-login-role" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-slate-200">
+                <option value="High-Rise Steel Worker">High-Rise Steel Worker</option>
+                <option value="Site Electrical Engineer">Site Electrical Engineer</option>
+                <option value="Scaffolding Specialist">Scaffolding Specialist</option>
+                <option value="Heavy Crane Operator">Heavy Crane Operator</option>
+                <option value="HSE Compliance Officer">HSE Compliance Officer</option>
+                <option value="Site Safety Supervisor">Site Safety Supervisor</option>
+              </select>
+            </div>
+
+            <!-- Work Zone -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Assigned Zone</label>
+              <select id="init-login-zone" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-slate-200">
+                <option value="Zone 4 - High-Rise Tower B">Zone 4 - High-Rise Tower B</option>
+                <option value="Zone 2 - Tower Crane & Grid">Zone 2 - Tower Crane & Grid</option>
+                <option value="Zone 3 - Scaffolding Assembly">Zone 3 - Scaffolding Assembly</option>
+                <option value="Zone 1 - Foundation & Excavation">Zone 1 - Foundation & Excavation</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-sm tracking-wide shadow-lg shadow-amber-500/25 transition-all transform active:scale-98 flex items-center justify-center gap-2">
+            <span>Verify Age & Enter SiteShield Portal</span>
+            <span>→</span>
+          </button>
+        </form>
+
+        <!-- Quick 1-Click Demo Profiles -->
+        <div class="space-y-2 border-t border-slate-800 pt-4">
+          <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider text-center" data-i18n="quickProfiles">Or Quick Login with Demo Profiles:</div>
+          <div class="grid grid-cols-2 gap-2">
+            
+            <button type="button" class="init-quick-profile flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-left transition-all" data-name="Ahmed Al-Mansoor" data-id="WRK-101" data-age="32" data-role="High-Rise Steel Worker" data-zone="Zone 4 - High-Rise Tower B">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="w-8 h-8 rounded-full object-cover shrink-0" alt="Ahmed" />
+              <div class="truncate">
+                <div class="font-bold text-xs text-white truncate">Ahmed Al-Mansoor</div>
+                <div class="text-[10px] text-amber-400 font-semibold">Age 32 • Steel (860 pts)</div>
+              </div>
+            </button>
+
+            <button type="button" class="init-quick-profile flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-left transition-all" data-name="Priya Sharma" data-id="WRK-104" data-age="29" data-role="Site Electrical Engineer" data-zone="Zone 2 - Tower Crane & Grid">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150" class="w-8 h-8 rounded-full object-cover shrink-0" alt="Priya" />
+              <div class="truncate">
+                <div class="font-bold text-xs text-white truncate">Priya Sharma 👑</div>
+                <div class="text-[10px] text-yellow-400 font-semibold">Age 29 • #1 Leader</div>
+              </div>
+            </button>
+
+            <button type="button" class="init-quick-profile flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-left transition-all" data-name="Carlos Rodriguez" data-id="WRK-102" data-age="35" data-role="Scaffolding Specialist" data-zone="Zone 3 - Scaffolding Assembly">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" class="w-8 h-8 rounded-full object-cover shrink-0" alt="Carlos" />
+              <div class="truncate">
+                <div class="font-bold text-xs text-white truncate">Carlos Rodriguez</div>
+                <div class="text-[10px] text-slate-300 font-semibold">Age 35 • Scaffolding</div>
+              </div>
+            </button>
+
+            <!-- Test Child Labor Blocker Button -->
+            <button type="button" id="init-test-minor-btn" class="flex items-center gap-2.5 p-2.5 rounded-xl bg-red-950/40 hover:bg-red-900/50 border border-red-500/50 text-left transition-all group">
+              <div class="w-8 h-8 rounded-full bg-red-600/30 border border-red-500 flex items-center justify-center text-sm shrink-0">
+                ⚠️
+              </div>
+              <div class="truncate">
+                <div class="font-bold text-xs text-red-400 group-hover:text-red-300 truncate">Test Minor (Age 15)</div>
+                <div class="text-[10px] text-red-300 font-semibold">Test Child Labor Block!</div>
+              </div>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom Footer -->
+    <div class="text-center py-2 text-[11px] text-slate-500">
+      SiteShield Automated Workforce Compliance System • Certified ILO 138/182 & OSHA 1926
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: CHILD LABOR LAW VIOLATION BLOCKED                -->
+  <!-- ======================================================== -->
+  <div id="child-labor-alert-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border-2 border-red-500 rounded-3xl max-w-lg w-full p-6 sm:p-8 text-center space-y-5 shadow-2xl hazard-strobe">
+      <div class="w-20 h-20 rounded-full bg-red-600/20 border-2 border-red-500 flex items-center justify-center text-4xl mx-auto animate-bounce">
+        🛑
+      </div>
+      
+      <div class="space-y-2">
+        <span class="text-xs px-3 py-1 rounded-full bg-red-600 text-white font-mono font-bold uppercase tracking-wider">
+          LEGAL VIOLATION PREVENTED
+        </span>
+        <h2 class="text-2xl font-black text-red-400" data-i18n="childLaborBlockTitle">
+          🛑 CHILD LABOR PROHIBITED: ACCESS DENIED
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed" data-i18n="childLaborBlockDesc">
+          Under International Labour Organization (ILO Convention No. 138 & 182) and OSHA safety regulations, individuals under 18 years of age are strictly prohibited from entering active hazardous construction sites. Entry has been blocked and logged.
+        </p>
+      </div>
+
+      <div class="bg-red-950/50 border border-red-500/40 rounded-xl p-3.5 text-left text-xs space-y-1 font-mono text-red-300">
+        <div>Applicant Age: <strong id="child-labor-attempted-age" class="text-white">15 Years Old</strong> (&lt; 18 Legal Threshold)</div>
+        <div>Violated Statute: <strong>OSHA 29 CFR 570.120 / ILO Convention 182</strong></div>
+        <div>Action Taken: <strong class="text-red-400">ACCESS HARD-BLOCKED • INCIDENT RECORDED</strong></div>
+      </div>
+
+      <button id="close-child-labor-modal-btn" class="w-full py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg">
+        Acknowledge Legal Prohibition & Return
+      </button>
+    </div>
+  </div>
+
+  <!-- TOP ANNOUNCEMENT / MARQUEE BANNER -->
+  <div class="bg-amber-500 text-slate-950 px-4 py-1.5 text-xs font-bold flex items-center justify-between overflow-hidden shadow-inner">
+    <div class="flex items-center gap-3 animate-pulse">
+      <span class="bg-slate-950 text-amber-400 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider font-extrabold">LIVE SAFETY MONITOR</span>
+      <span data-i18n="tagline">Real-time PPE Verification, OSHA Compliance & Worker Safety Platform</span>
+    </div>
+    <div class="hidden md:flex items-center gap-4 text-xs font-semibold">
+      <span>☀️ Site Heat Index: 36°C (Level 2 Advisory)</span>
+      <span>•</span>
+      <span>🚨 Active Hazard Alarms: 0</span>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER BAR -->
+  <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="App.switchTab('inspector')">
+        <div class="relative">
+          <img src="contruction safty app logo.png" alt="SiteShield Logo" class="w-10 h-10 object-contain rounded-xl shadow-lg border border-amber-500/40 p-0.5 bg-white/10" />
+          <span class="absolute -top-1 -right-1 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+          </span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-300 bg-clip-text text-transparent">SiteShield</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono font-bold border border-amber-500/30">AI-OSHA</span>
+          </div>
+          <div class="text-[11px] text-slate-400 font-medium" data-i18n="appSubtitle">AI Construction Safety, PPE & Child Labor Protection Platform</div>
+        </div>
+      </div>
+
+      <!-- Quick Status & Hydration Timer in Header -->
+      <div class="hidden lg:flex items-center gap-3">
+        <!-- Live Site Safety Warning / Status Pill -->
+        <div id="header-site-status-pill" class="flex items-center gap-2.5 bg-slate-800/80 border border-emerald-500/30 px-3 py-1.5 rounded-xl shadow-sm transition-all">
+          <span id="site-status-icon" class="text-lg">🛡️</span>
+          <div>
+            <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Site Safety Status</div>
+            <div id="site-status-text" class="font-mono text-xs font-bold text-emerald-400">SAFE (Compliant)</div>
+          </div>
+          <button onclick="SafetyTimers.triggerSiteSafetyWarning()" title="Simulate Site Safety Warning" class="text-[10px] ml-1 px-1.5 py-0.5 rounded bg-red-500/20 hover:bg-red-500/40 text-red-300 font-mono">
+            🚨 Test
+          </button>
+        </div>
+
+        <!-- 20-Min Hydration Timer Pill -->
+        <div class="flex items-center gap-2 bg-slate-800/80 border border-cyan-500/30 px-3 py-1.5 rounded-xl shadow-sm">
+          <span class="text-lg">💧</span>
+          <div>
+            <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider" data-i18n="hydrationTimerLabel">Hydration Break</div>
+            <div id="header-hydration-timer" class="font-mono text-sm font-bold text-cyan-400">20:00</div>
+          </div>
+          <button id="test-hydration-alarm-btn" title="Simulate 20-Min Hydration Alarm" class="text-[10px] ml-1 px-1.5 py-0.5 rounded bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 font-mono">
+            💧 Test
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Action Controls (Lang, Theme, User) -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- Language Selector -->
+        <div class="relative">
+          <select id="language-selector" class="bg-slate-800 text-slate-200 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer">
+            <option value="en">🇺🇸 English</option>
+            <option value="ar">🇦🇪 العربية (AR)</option>
+            <option value="hi">🇮🇳 हिन्दी (HI)</option>
+            <option value="ta">🇮🇳 தமிழ் (Tamil)</option>
+            <option value="ml">🇮🇳 മലയാളം (Malayalam)</option>
+            <option value="fr">🇫🇷 Français (French)</option>
+            <option value="es">🇪🇸 Español (ES)</option>
+            <option value="tl">🇵🇭 Tagalog (TL)</option>
+            <option value="ur">🇵🇰 اردو (UR)</option>
+          </select>
+        </div>
+
+        <!-- Dark / Light Mode Toggle -->
+        <button id="theme-toggle-btn" title="Toggle Dark/Light Mode" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-sm transition-transform active:scale-95">
+          <span id="theme-toggle-icon">☀️</span>
+        </button>
+
+        <!-- Current User Profile Button -->
+        <div id="open-login-btn" class="flex items-center gap-2.5 bg-slate-800/90 hover:bg-slate-700/80 border border-slate-700 rounded-xl p-1.5 pr-3 cursor-pointer transition-all active:scale-95 shadow-sm" title="Click to view profile or change worker">
+          <div class="relative">
+            <img id="header-user-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="w-8 h-8 rounded-lg object-cover border border-amber-500/50" alt="Avatar" />
+            <span id="header-leader-crown" class="hidden absolute -top-2 -right-2 text-xs">👑</span>
+          </div>
+          <div class="text-left hidden sm:block">
+            <div class="flex items-center gap-1.5">
+              <span id="header-user-name" class="text-xs font-bold text-slate-100 truncate max-w-[110px]">Ahmed Al-Mansoor</span>
+              <span id="header-user-rank" class="text-[10px] px-1 py-0.2 rounded bg-amber-500/20 text-amber-400 font-mono font-bold">#2</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="header-user-role" class="text-[10px] text-slate-400 truncate max-w-[100px]">Steel • Age 32</span>
+              <span id="header-user-points" class="text-[11px] font-extrabold text-amber-400">860 pts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Switch Worker / Sign Out Button -->
+        <button id="header-switch-worker-btn" title="Switch Worker / Sign Out" class="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 transition-all active:scale-95 shadow-sm">
+          <span>🔄</span>
+          <span data-i18n="logout">Switch Worker</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-1 overflow-x-auto py-1 scrollbar-none border-t border-slate-800/60">
+      <button id="nav-btn-inspector" class="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all bg-amber-500 text-slate-950 shadow-md whitespace-nowrap">
+        <span>🏗️</span>
+        <span data-i18n="navInspector">Site Inspector</span>
+      </button>
+
+      <button id="nav-btn-ppe-gate" class="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 transition-all whitespace-nowrap">
+        <span>📸</span>
+        <span data-i18n="navPpeGate">PPE Verification Gate</span>
+      </button>
+
+      <button id="nav-btn-leaderboard" class="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 transition-all whitespace-nowrap">
+        <span>🏆</span>
+        <span data-i18n="navLeaderboard">Leaderboard & Badges</span>
+      </button>
+
+      <button id="nav-btn-guide" class="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 transition-all whitespace-nowrap">
+        <span>🤖</span>
+        <span data-i18n="navAiGuide">AI Safety Guide</span>
+      </button>
+
+      <button id="nav-btn-timers" class="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 transition-all whitespace-nowrap">
+        <span>⏱️</span>
+        <span data-i18n="navTimers">Safety Timers</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: SITE INSPECTOR & HAZARD DETECTION   -->
+    <!-- ========================================== -->
+    <section id="tab-content-inspector" class="space-y-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight" data-i18n="inspectorTitle">Construction Site Hazard & PPE Scanner</h1>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="inspectorDesc">Upload photos or video streams to detect hard hats, worker safety gear, scaffolding hazards, fall risks, and OSHA law violations.</p>
+        </div>
+
+        <div class="flex items-center gap-2 flex-wrap">
+          <button id="toggle-heatmap-btn" onclick="SafetyAI.toggleHeatmap()" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 shadow-sm transition-all active:scale-95">
+            <span>🔥</span>
+            <span>Hazard Heatmap</span>
+          </button>
+          <button id="export-report-btn" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 shadow-sm transition-all active:scale-95">
+            <span>📄</span>
+            <span data-i18n="exportReport">Export Safety Report (PDF)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CRITICAL HAZARD ALERT BANNER (Triggers dynamically when safety laws violated) -->
+      <div id="hazard-alert-banner" class="hidden p-4 rounded-2xl bg-red-950/80 border-2 border-red-500 text-red-200 hazard-strobe flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-red-600/30 border border-red-500 flex items-center justify-center text-2xl shrink-0">
+            🚨
+          </div>
+          <div>
+            <div class="font-extrabold text-base text-red-400 flex items-center gap-2">
+              IMMEDIATE SAFETY VIOLATION DETECTED!
+              <span class="text-xs px-2 py-0.5 rounded bg-red-600 text-white font-mono uppercase">STOP WORK ORDER</span>
+            </div>
+            <div class="text-xs text-red-300 mt-0.5">Critical hazards found: Personnel missing hard hats & fall protection. Immediate site supervisor notification dispatched.</div>
+          </div>
+        </div>
+        <button onclick="SafetyTimers.triggerHelmetAlert()" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wider shrink-0 shadow-lg">
+          Broadcast Site Siren 🔊
+        </button>
+      </div>
+
+      <!-- Preset Scenarios Selector -->
+      <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5" data-i18n="choosePreset">Quick Test Scenarios:</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+          <button class="preset-scenario-btn flex items-center gap-2.5 p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700/80 text-left transition-all active:scale-98" data-scenario="scaffolding">
+            <span class="text-2xl">⚠️</span>
+            <div>
+              <div class="font-bold text-xs text-slate-200" data-i18n="preset1">Scaffolding Hazard (Missing Guardrail & No Helmets)</div>
+              <div class="text-[10px] text-red-400 font-semibold">Score: 48/100 • 3 Violations</div>
+            </div>
+          </button>
+
+          <button class="preset-scenario-btn flex items-center gap-2.5 p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700/80 text-left transition-all active:scale-98" data-scenario="compliant">
+            <span class="text-2xl">🛡️</span>
+            <div>
+              <div class="font-bold text-xs text-slate-200" data-i18n="preset2">Compliant Steelwork Crew (Full PPE)</div>
+              <div class="text-[10px] text-emerald-400 font-semibold">Score: 96/100 • Zero Violations</div>
+            </div>
+          </button>
+
+          <button class="preset-scenario-btn flex items-center gap-2.5 p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700/80 text-left transition-all active:scale-98" data-scenario="fallrisk">
+            <span class="text-2xl">🚨</span>
+            <div>
+              <div class="font-bold text-xs text-slate-200" data-i18n="preset3">High-Rise Fall Hazard (Missing Harness)</div>
+              <div class="text-[10px] text-red-400 font-semibold">Score: 35/100 • Fatal Risk</div>
+            </div>
+          </button>
+
+          <button class="preset-scenario-btn flex items-center gap-2.5 p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700/80 text-left transition-all active:scale-98" data-scenario="trench">
+            <span class="text-2xl">⛏️</span>
+            <div>
+              <div class="font-bold text-xs text-slate-200" data-i18n="preset4">Excavation Trench Collapse Risk</div>
+              <div class="text-[10px] text-amber-400 font-semibold">Score: 42/100 • OSHA 1926.652</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Layout: Inspection Canvas (Left) + Analysis Breakdown (Right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Media Visualizer & Drag-Drop Box (7 Cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          
+          <!-- Drop & Upload Container -->
+          <div id="inspector-drop-zone" class="relative group rounded-2xl border-2 border-dashed border-slate-700 hover:border-amber-500 bg-slate-900/40 p-4 transition-all">
+            <input type="file" id="site-file-input" accept="image/*,video/*" class="hidden" />
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-3 text-center sm:text-left">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                  📁
+                </div>
+                <div>
+                  <div class="font-bold text-xs sm:text-sm text-slate-200" data-i18n="uploadBoxTitle">Drag & drop site photo or video</div>
+                  <div class="text-[11px] text-slate-400" data-i18n="uploadBoxSubtitle">Supports JPG, PNG, WEBP, MP4, WebM (or choose a preset below)</div>
+                </div>
+              </div>
+              <button id="browse-files-btn" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 shrink-0 transition-transform active:scale-95 shadow" data-i18n="browseFiles">
+                Browse Files
+              </button>
+            </div>
+          </div>
+
+          <!-- Inspection Canvas Viewport -->
+          <div class="relative w-full aspect-[16/10] bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl flex items-center justify-center">
+            <!-- Animated Radar Scan Line -->
+            <div class="radar-scan-line"></div>
+
+            <!-- Media Container (SVG, Image, Video) -->
+            <div id="inspector-media-container" class="w-full h-full flex items-center justify-center">
+              <!-- Dynamically populated -->
+            </div>
+
+            <!-- Dynamic Bounding Boxes Overlay Layer -->
+            <div id="inspector-overlay-layer" class="absolute inset-0 pointer-events-none">
+              <!-- Bounding boxes injected here -->
+            </div>
+
+            <!-- Realtime AI Scanner Badge in Corner -->
+            <div class="absolute bottom-3 left-3 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700 text-xs font-mono font-semibold">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>AI Vision Engine Active</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Side: Inspection Metrics & OSHA Violations (5 Cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <!-- Key Metrics Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-3">
+            <!-- Site Safety Score Card -->
+            <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-2xl">
+                📊
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider" data-i18n="overallScore">Site Safety Score</div>
+                <div class="flex items-center gap-2">
+                  <div id="stat-score-val" class="text-3xl font-black text-amber-400">48/100</div>
+                  <div id="stat-score-ring" class="w-3 h-3 rounded-full bg-amber-400 animate-ping"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Workers Detected -->
+            <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-2xl">
+                👷
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider" data-i18n="workersDetected">Workers Detected</div>
+                <div id="stat-workers-val" class="text-3xl font-black text-slate-200">3</div>
+              </div>
+            </div>
+
+            <!-- Helmets Verified -->
+            <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl">
+                🪖
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider" data-i18n="helmetsOn">Helmets Verified</div>
+                <div id="stat-helmets-val" class="text-3xl font-black text-emerald-400">1</div>
+              </div>
+            </div>
+
+            <!-- Violations Found -->
+            <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-2xl">
+                ⚠️
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider" data-i18n="violationsFound">Violations Detected</div>
+                <div id="stat-violations-val" class="text-3xl font-black text-red-400">3</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Inspection Findings List -->
+          <div class="bg-slate-900/90 rounded-2xl border border-slate-800 p-4 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-400" data-i18n="scanResults">Inspection Results & Hazard Report</h3>
+              <span class="text-[11px] text-amber-400 font-mono">Live Sync</span>
+            </div>
+
+            <!-- Dynamic Items Container -->
+            <div id="detections-list-container" class="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
+              <!-- Dynamically populated from JS -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: STEP-BY-STEP PPE VERIFICATION GATE  -->
+    <!-- ========================================== -->
+    <section id="tab-content-ppe-gate" class="hidden space-y-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight" data-i18n="ppeGateTitle">Step-by-Step PPE Gear Verification Gate</h1>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="ppeGateDesc">All personnel must complete the automated safety scan before entering the construction zone. Missing gear triggers an immediate audible alarm.</p>
+        </div>
+
+        <button id="ppe-reset-btn" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all">
+          🔄 Reset Verification Gate
+        </button>
+      </div>
+
+      <!-- Step Indicator Bar -->
+      <div class="grid grid-cols-4 gap-2 bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
+        <div class="flex items-center gap-2">
+          <span id="ppe-step-indicator-1" class="w-8 h-8 rounded-full bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-xs">1</span>
+          <span class="text-xs font-semibold text-slate-200 hidden sm:inline" data-i18n="step1Title">1. Worker ID & Role</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="ppe-step-indicator-2" class="w-8 h-8 rounded-full border border-slate-700 bg-slate-800 text-slate-400 font-semibold flex items-center justify-center text-xs">2</span>
+          <span class="text-xs font-semibold text-slate-400 hidden sm:inline" data-i18n="step2Title">2. Capture Gear Selfie</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="ppe-step-indicator-3" class="w-8 h-8 rounded-full border border-slate-700 bg-slate-800 text-slate-400 font-semibold flex items-center justify-center text-xs">3</span>
+          <span class="text-xs font-semibold text-slate-400 hidden sm:inline" data-i18n="step3Title">3. AI Scan & Verification</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="ppe-step-indicator-4" class="w-8 h-8 rounded-full border border-slate-700 bg-slate-800 text-slate-400 font-semibold flex items-center justify-center text-xs">4</span>
+          <span class="text-xs font-semibold text-slate-400 hidden sm:inline" data-i18n="step4Title">4. Clearance Gate</span>
+        </div>
+      </div>
+
+      <!-- Step Contents -->
+      <div class="bg-slate-900/90 rounded-2xl border border-slate-800 p-6">
+        
+        <!-- STEP 1: Worker ID Confirmation -->
+        <div id="ppe-step-content-1" class="space-y-6 max-w-xl mx-auto py-4">
+          <div class="text-center space-y-2">
+            <div class="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-3xl mx-auto">
+              🪪
+            </div>
+            <h3 class="text-lg font-bold text-white">Shift Pre-Check: Confirm Your Identity</h3>
+            <p class="text-xs text-slate-400">Ensure your shift credential matches your site biometric records.</p>
+          </div>
+
+          <div class="space-y-4 bg-slate-800/40 p-5 rounded-xl border border-slate-700/60">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Assigned Worker Name</label>
+                <input type="text" id="ppe-worker-name" placeholder="Logged-in Worker Name" readonly class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm font-semibold text-amber-400 focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Verified Age & Status</label>
+                <div class="flex items-center gap-2">
+                  <input type="text" id="ppe-worker-age" placeholder="Verified Age" readonly class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs font-bold text-emerald-400 focus:outline-none" />
+                  <span class="text-[10px] px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 font-bold whitespace-nowrap">✓ 18+ Legal</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Trade / Role</label>
+                <input type="text" id="ppe-worker-role" value="High-Rise Steel Worker" readonly class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-slate-200" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Work Zone</label>
+                <input type="text" id="ppe-worker-zone" value="Zone 4 - High-Rise Tower B" readonly class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-slate-200" />
+              </div>
+            </div>
+          </div>
+
+          <button onclick="PpeChecker.setStep(2)" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all">
+            Proceed to Gear Camera Scan →
+          </button>
+        </div>
+
+        <!-- STEP 2: Capture Gear Selfie -->
+        <div id="ppe-step-content-2" class="hidden space-y-6 max-w-2xl mx-auto py-2">
+          <div class="text-center space-y-1">
+            <h3 class="text-lg font-bold text-white">Stand in Frame with Full Gear</h3>
+            <p class="text-xs text-slate-400">Ensure Hard Hat, Reflective Vest, and Eye Protection are clearly visible.</p>
+          </div>
+
+          <!-- Camera / Viewport -->
+          <div class="relative w-full aspect-square max-w-sm mx-auto bg-slate-950 rounded-2xl overflow-hidden border-2 border-dashed border-amber-500/50 flex items-center justify-center shadow-2xl">
+            <video id="ppe-webcam-feed" autoplay playsinline class="hidden w-full h-full object-cover"></video>
+            <canvas id="ppe-snapshot-canvas" class="hidden"></canvas>
+            <div id="camera-placeholder" class="p-6 text-center">
+              <span class="text-5xl block mb-3">📸</span>
+              <p class="text-xs text-slate-400">Click "Open Live Camera" or select a simulated test snapshot below.</p>
+            </div>
+          </div>
+
+          <!-- Camera Controls -->
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <button id="ppe-start-cam-btn" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-200 flex items-center gap-2">
+              <span>📹</span> <span data-i18n="startCamera">Open Live Camera</span>
+            </button>
+            <button id="ppe-snap-btn" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-extrabold shadow-md shadow-amber-500/20 flex items-center gap-2">
+              <span>📸</span> <span data-i18n="takePhoto">Capture Verification Photo</span>
+            </button>
+          </div>
+
+          <!-- Instant Test Samples -->
+          <div class="border-t border-slate-800 pt-4 text-center">
+            <div class="text-xs font-semibold text-slate-400 mb-2">Simulate Quick Verification Without Camera:</div>
+            <div class="flex items-center justify-center gap-3 flex-wrap">
+              <button id="ppe-test-good-btn" class="px-4 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-400 font-bold text-xs flex items-center gap-1.5">
+                <span>✅</span> <span data-i18n="useTestSampleGood">Test: 100% Compliant Worker</span>
+              </button>
+              <button id="ppe-test-bad-btn" class="px-4 py-2 rounded-xl bg-red-600/20 hover:bg-red-600/30 border border-red-500/40 text-red-400 font-bold text-xs flex items-center gap-1.5">
+                <span>⚠️</span> <span data-i18n="useTestSampleBad">Test: Non-Compliant Worker (Missing Gear)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: Sequential AI Gear Scan -->
+        <div id="ppe-step-content-3" class="hidden space-y-6 max-w-xl mx-auto py-4">
+          <div class="text-center space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mx-auto animate-spin">
+              ⚙️
+            </div>
+            <h3 class="text-lg font-bold text-white" data-i18n="verifyingGear">Scanning gear from head to toe...</h3>
+            <p class="text-xs text-slate-400">Deep learning model checking compliance with ANSI Z89.1 & OSHA 1926.</p>
+          </div>
+
+          <!-- Sequential Scanning Items -->
+          <div id="ppe-step3-items" class="space-y-3">
+            <!-- Dynamically animated rows -->
+          </div>
+        </div>
+
+        <!-- STEP 4: Final Clearance Gate -->
+        <div id="ppe-step-content-4" class="hidden space-y-6 max-w-xl mx-auto py-4">
+          
+          <!-- ACCESS GRANTED BOX -->
+          <div id="ppe-gate-approved" class="hidden space-y-6 text-center">
+            <div class="w-20 h-20 rounded-full bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center text-4xl mx-auto animate-bounce">
+              ✅
+            </div>
+            <div>
+              <h2 class="text-2xl font-black text-emerald-400" data-i18n="gateApproved">ACCESS GRANTED: Full Safety Gear Verified!</h2>
+              <p class="text-xs text-slate-300 mt-1" data-i18n="gateApprovedDesc">You have complied with all OSHA 1926 regulations. 50 Safety Points awarded to your profile.</p>
+            </div>
+
+            <!-- Digital Gate Pass Card -->
+            <div class="bg-slate-950 p-5 rounded-2xl border-2 border-emerald-500/40 text-left space-y-3 font-mono shadow-2xl">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <span class="text-xs font-bold text-emerald-400">SITE ENTRY PASS #OSHA-8492</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">ACTIVE SHIFT</span>
+              </div>
+              <div class="text-xs space-y-1">
+                <div>Worker: <strong id="gate-pass-worker-name" class="text-white">--</strong></div>
+                <div>Verified Age: <strong id="gate-pass-worker-age" class="text-emerald-400">--</strong></div>
+                <div>Role: <strong id="gate-pass-worker-role" class="text-white">--</strong></div>
+                <div>Timestamp: <strong id="gate-pass-timestamp" class="text-slate-300"></strong></div>
+                <div>Status: <span class="text-emerald-400 font-bold">ALL 4 PPE ITEMS CERTIFIED • CHILD LABOR CHECK PASSED</span></div>
+              </div>
+              <!-- Barcode Graphic -->
+              <div class="h-8 bg-slate-800 rounded flex items-center justify-between px-2 text-[10px] text-slate-400 tracking-widest overflow-hidden">
+                || | ||| |||| | |||||| || | || ||||| | ||| ||
+              </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-3">
+              <button onclick="PpeChecker.resetGate()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold">
+                Scan Next Worker
+              </button>
+              <button onclick="App.switchTab('leaderboard')" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-extrabold shadow-md">
+                View Points in Leaderboard →
+              </button>
+            </div>
+          </div>
+
+          <!-- ACCESS DENIED BOX -->
+          <div id="ppe-gate-denied" class="hidden space-y-6 text-center">
+            <div class="w-20 h-20 rounded-full bg-red-500/20 border-2 border-red-500 flex items-center justify-center text-4xl mx-auto hazard-strobe">
+              🚫
+            </div>
+            <div>
+              <h2 class="text-2xl font-black text-red-500" data-i18n="gateDenied">ACCESS DENIED: Critical Safety Equipment Missing!</h2>
+              <p class="text-xs text-red-300 mt-1" data-i18n="gateDeniedDesc">Immediate alert logged. Please put on the required missing equipment before re-scanning.</p>
+            </div>
+
+            <div class="bg-red-950/40 border border-red-500/50 p-4 rounded-xl text-left text-xs text-red-200 space-y-2">
+              <div class="font-bold flex items-center gap-2">
+                <span>⚠️ Required Actions Before Entry:</span>
+              </div>
+              <ul class="list-disc pl-5 space-y-1 text-slate-300">
+                <li>Put on certified Type 1 Class E Hard Hat with securely clasped chin strap.</li>
+                <li>Wear ANSI Class 2/3 high-visibility fluorescent orange or lime vest.</li>
+                <li>Ensure ANSI Z87.1 approved eye protection is worn.</li>
+              </ul>
+            </div>
+
+            <button onclick="PpeChecker.setStep(2)" class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg">
+              Equip Gear & Retake Verification Photo
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: LEADERBOARD & BADGES                -->
+    <!-- ========================================== -->
+    <section id="tab-content-leaderboard" class="hidden space-y-6">
+      
+      <!-- Section Header -->
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight" data-i18n="leaderboardTitle">Site Safety Leaderboard & Awards</h1>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="leaderboardDesc">Personnel earn safety points through daily PPE scans, timely hydration breaks, and hazard reporting. The top scorer holds the supreme Gold Safety Badge!</p>
+      </div>
+
+      <!-- CURRENT #1 LEADER HERO SPOTLIGHT -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-600/30 via-slate-900 to-amber-900/20 border-2 border-yellow-500/60 p-6 shadow-2xl">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-5 text-center sm:text-left">
+            <div class="relative">
+              <img id="top-leader-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150" class="w-20 h-20 rounded-2xl object-cover border-2 border-yellow-400 shadow-xl" alt="Leader" />
+              <div class="absolute -top-3 -right-3 text-2xl animate-bounce">
+                👑
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 justify-center sm:justify-start">
+                <span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-yellow-400 text-slate-950 uppercase tracking-wider" data-i18n="topPerformerTitle">Current #1 Safety Champion</span>
+                <span class="text-yellow-400 text-sm">🏆</span>
+              </div>
+              <h2 id="top-leader-name" class="text-xl sm:text-2xl font-black text-white mt-1">Priya Sharma</h2>
+              <div id="top-leader-role" class="text-xs text-slate-300">Site Electrical Engineer</div>
+              <p class="text-[11px] text-amber-300/90 mt-1 font-semibold" data-i18n="topPerformerSubtitle">Holds the prestigious Golden Helmet Guardian Badge</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-950/80 border border-yellow-500/40 px-6 py-4 rounded-xl text-center shadow-lg">
+            <div class="text-[10px] text-yellow-400 uppercase tracking-widest font-bold">Top Score</div>
+            <div id="top-leader-points" class="text-3xl font-black text-yellow-400">920 Points</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaderboard Table -->
+      <div class="bg-slate-900/90 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-slate-800 text-[11px] uppercase tracking-wider text-slate-400 font-bold bg-slate-950/40">
+                <th class="py-3 px-4" data-i18n="rankCol">Rank</th>
+                <th class="py-3 px-4" data-i18n="workerCol">Worker / Trade</th>
+                <th class="py-3 px-4" data-i18n="pointsCol">Total Points</th>
+                <th class="py-3 px-4" data-i18n="badgesCol">Badges Earned</th>
+                <th class="py-3 px-4" data-i18n="statusCol">Site Status</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Badges Showcase Section -->
+      <div class="bg-slate-900/80 rounded-2xl border border-slate-800 p-6 space-y-4">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <span>🎖️</span> <span data-i18n="allBadgesTitle">Safety Badges Showcase</span>
+        </h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <!-- Gold Badge -->
+          <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/40 text-center space-y-2">
+            <div class="text-3xl">🏆</div>
+            <div class="font-bold text-xs text-yellow-400" data-i18n="badgeGoldName">Golden Safety Guardian</div>
+            <div class="text-[11px] text-slate-400" data-i18n="badgeGoldDesc">Held exclusively by the #1 worker on the leaderboard.</div>
+          </div>
+
+          <!-- Helmet Hero -->
+          <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/40 text-center space-y-2">
+            <div class="text-3xl">🪖</div>
+            <div class="font-bold text-xs text-emerald-400" data-i18n="badgeHelmetName">Helmet Hero</div>
+            <div class="text-[11px] text-slate-400" data-i18n="badgeHelmetDesc">100% consecutive hard hat compliance checks.</div>
+          </div>
+
+          <!-- Hydration Champion -->
+          <div class="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/40 text-center space-y-2">
+            <div class="text-3xl">💧</div>
+            <div class="font-bold text-xs text-cyan-400" data-i18n="badgeHydrationName">Hydration Champion</div>
+            <div class="text-[11px] text-slate-400" data-i18n="badgeHydrationDesc">Consistently logged all 20-min heat stress hydration breaks.</div>
+          </div>
+
+          <!-- Sentinel -->
+          <div class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/40 text-center space-y-2">
+            <div class="text-3xl">🛡️</div>
+            <div class="font-bold text-xs text-purple-400" data-i18n="badgeSentinelName">Zero-Violation Sentinel</div>
+            <div class="text-[11px] text-slate-400" data-i18n="badgeSentinelDesc">30 shifts with zero safety reprimands or OSHA infractions.</div>
+          </div>
+
+          <!-- Eagle -->
+          <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/40 text-center space-y-2">
+            <div class="text-3xl">🔍</div>
+            <div class="font-bold text-xs text-amber-400" data-i18n="badgeEagleName">Eagle Eye Hazard Scout</div>
+            <div class="text-[11px] text-slate-400" data-i18n="badgeEagleDesc">Reported dangerous site conditions to protect crew mates.</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: AI SAFETY GUIDE (CHATBOT)           -->
+    <!-- ========================================== -->
+    <section id="tab-content-guide" class="hidden space-y-6">
+      
+      <!-- Section Header -->
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight" data-i18n="aiGuideTitle">AI Construction Safety Assistant</h1>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="aiGuideDesc">Ask any question regarding OSHA 1926 safety regulations, Dubai Municipality / GCC construction codes, fall protection, heat stress rules, and emergency protocols.</p>
+      </div>
+
+      <!-- Quick Question Chips -->
+      <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5" data-i18n="quickQuestions">Frequently Asked Safety Questions:</div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <button class="quick-question-chip px-3 py-1.5 rounded-full text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 transition-all text-left" data-i18n="q1">
+            What are the OSHA rules for scaffolding guardrails?
+          </button>
+          <button class="quick-question-chip px-3 py-1.5 rounded-full text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 transition-all text-left" data-i18n="q2">
+            What are the mandatory PPE requirements on site?
+          </button>
+          <button class="quick-question-chip px-3 py-1.5 rounded-full text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 transition-all text-left" data-i18n="q3">
+            How do we prevent heat stroke and manage hydration breaks?
+          </button>
+          <button class="quick-question-chip px-3 py-1.5 rounded-full text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 transition-all text-left" data-i18n="q4">
+            What is the fall protection height threshold for construction?
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Interface -->
+      <div class="bg-slate-900/90 rounded-2xl border border-slate-800 flex flex-col h-[520px] shadow-2xl overflow-hidden">
+        
+        <!-- Messages Scroll Container -->
+        <div id="ai-chat-messages" class="flex-1 p-5 overflow-y-auto space-y-4">
+          <!-- Initial Welcome Message from AI -->
+          <div class="flex items-start gap-2.5 max-w-[85%]">
+            <div class="w-8 h-8 rounded-full bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-sm shrink-0 shadow">
+              🤖
+            </div>
+            <div class="bg-slate-800/90 border border-slate-700 text-slate-200 text-xs sm:text-sm p-4 rounded-2xl rounded-tl-sm leading-relaxed shadow-lg">
+              Hello! I am your <strong>BuildSafe Construction Safety Assistant</strong>. I am trained on OSHA 1926, ISO 45001, and GCC regional construction safety standards. Ask me anything about scaffolding, PPE requirements, fall arrest systems, heat stress hydration breaks, or trenching safety!
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="p-3 bg-slate-950/80 border-t border-slate-800 flex items-center gap-2">
+          <input type="text" id="ai-chat-input" placeholder="Ask about scaffolding, PPE rules, trench shoring, or heat stress..." data-i18n-placeholder="chatPlaceholder" class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+          <button id="ai-chat-send-btn" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm transition-all active:scale-95 shadow">
+            <span data-i18n="send">Send</span> →
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 5: SAFETY TIMERS DASHBOARD             -->
+    <!-- ========================================== -->
+    <section id="tab-content-timers" class="hidden space-y-6">
+      
+      <!-- Section Header -->
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight" data-i18n="timersTitle">Active Safety Timers & Alert System</h1>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="timersDesc">Automated recurring safety reminders designed to protect workers from falling object hazards and thermal heat exhaustion.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Real-Time Site Safety Hazard Monitor Card -->
+        <div id="timers-site-hazard-card" class="bg-slate-900/90 rounded-2xl border-2 border-red-500/40 p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span id="tab-site-hazard-icon" class="text-3xl">🚨</span>
+              <span id="tab-site-hazard-pill" class="text-xs px-2.5 py-1 rounded-full bg-red-500/20 text-red-400 font-mono font-bold border border-red-500/30">MONITOR ACTIVE</span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-white">Active Site Safety Hazard Warning</h3>
+              <p class="text-xs text-slate-400 mt-1">Real-time surveillance monitoring high-rise scaffolding, fall hazards, and PPE non-compliance.</p>
+            </div>
+
+            <!-- Site Condition Indicator -->
+            <div id="tab-site-condition-box" class="text-center py-6 bg-slate-950/60 rounded-xl border border-slate-800">
+              <div id="tab-site-condition-val" class="font-black text-3xl text-red-400 tracking-wide">HAZARD WARNING</div>
+              <div id="tab-site-condition-sub" class="text-xs text-slate-300 mt-1.5 font-medium">Critical violations detected on active job site</div>
+            </div>
+
+            <!-- Site Safety Severity Meter -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-xs text-slate-400">
+                <span>Site Risk Index</span>
+                <span id="tab-site-risk-pct" class="text-red-400 font-bold">HIGH RISK</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                <div id="tab-site-risk-bar" class="bg-red-500 h-2 rounded-full transition-all duration-1000" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 pt-6">
+            <button onclick="SafetyTimers.triggerSiteSafetyWarning()" class="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2">
+              <span>🚨</span> <span>Broadcast Emergency Siren</span>
+            </button>
+            <button onclick="App.switchTab('inspector')" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700">
+              View Hazards →
+            </button>
+          </div>
+        </div>
+
+        <!-- 20-Minute Hydration Break Card -->
+        <div class="bg-slate-900/90 rounded-2xl border-2 border-cyan-500/40 p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-3xl">💧</span>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-400 font-mono font-bold border border-cyan-500/30">EVERY 20 MINS</span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-white" data-i18n="hydrationWarningTitle">20-Minute Hydration & Heat Stress Break</h3>
+              <p class="text-xs text-slate-400 mt-1" data-i18n="hydrationWarningDesc">Working under harsh sun causes rapid dehydration. Minimum 250ml water intake every 20 minutes is mandatory.</p>
+            </div>
+
+            <!-- Countdown Display -->
+            <div class="text-center py-6 bg-slate-950/60 rounded-xl border border-slate-800">
+              <div id="tab-hydration-timer" class="font-mono text-5xl font-black text-cyan-400 tracking-wider">20:00</div>
+              <div class="text-xs text-slate-400 mt-1">Next Hydration Break Countdown</div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+              <div id="hydration-progress-bar" class="bg-cyan-500 h-2 rounded-full transition-all duration-1000" style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 pt-6">
+            <button id="tab-log-hydration-btn" class="flex-1 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs shadow-md transition-all">
+              <span data-i18n="logHydrationBtn">Drink Water & Log (+20 pts)</span>
+            </button>
+            <button onclick="SafetyTimers.triggerHydrationAlert()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700">
+              💧 Test Alarm
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODAL: OSHA VIOLATION DETAIL & RECTIFY     -->
+  <!-- ========================================== -->
+  <div id="detection-detail-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">⚠️</span>
+          <div>
+            <h3 id="modal-det-title" class="font-bold text-sm text-white">Hazard Detail</h3>
+            <span id="modal-det-code" class="text-[11px] font-mono text-amber-400">OSHA 1926</span>
+          </div>
+        </div>
+        <button onclick="SafetyAI.closeDetectionModal()" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <span class="text-slate-400 font-semibold block mb-1">Hazard Description & Finding:</span>
+          <p id="modal-det-desc" class="text-slate-200 leading-relaxed bg-slate-800/50 p-3 rounded-xl border border-slate-700/60"></p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/60">
+            <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Severity Rating</span>
+            <span id="modal-det-severity" class="inline-block mt-1 font-bold text-xs">CRITICAL</span>
+          </div>
+          <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/60">
+            <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Estimated OSHA Fine</span>
+            <span id="modal-det-fine" class="text-xs font-bold text-red-400 mt-1 block font-mono">$16,131 / Violation</span>
+          </div>
+        </div>
+
+        <div class="bg-slate-800/30 p-2.5 rounded-xl border border-slate-700/40 text-[11px] text-slate-400">
+          Confidence Rating: <strong id="modal-det-confidence" class="text-slate-200">98.4%</strong> • Verified with AI Vision Engine
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 pt-2">
+        <button id="modal-rectify-btn" onclick="SafetyAI.rectifyActiveDetection()" class="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md flex items-center justify-center gap-1.5">
+          <span>✓</span> <span>Implement Fix & Mark Rectified (+25 pts)</span>
+        </button>
+        <button onclick="SafetyAI.closeDetectionModal()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: SITE SAFETY HAZARD WARNING POPUP    -->
+  <!-- ========================================== -->
+  <div id="site-safety-alert-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border-2 border-red-500 rounded-3xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl hazard-strobe">
+      <div class="w-16 h-16 rounded-full bg-red-600/20 border-2 border-red-500 flex items-center justify-center text-4xl mx-auto animate-bounce">
+        🚨
+      </div>
+      <div>
+        <h3 class="text-xl font-extrabold text-red-400">🚨 SITE SAFETY WARNING: UNSAFE CONDITIONS!</h3>
+        <p class="text-xs text-slate-200 mt-2 leading-relaxed">
+          Critical safety hazards detected on the job site (missing guardrails, untethered personnel, or unshielded trenches). Immediate supervisor intervention required.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 pt-2">
+        <button onclick="SafetyTimers.acknowledgeSiteWarning()" class="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase shadow">
+          Acknowledge & Inspect Hazards
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: 20-MINUTE HYDRATION POPUP           -->
+  <!-- ========================================== -->
+  <div id="hydration-alert-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border-2 border-cyan-500 rounded-2xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl">
+      <div class="w-16 h-16 rounded-full bg-cyan-500/20 border-2 border-cyan-500 flex items-center justify-center text-4xl mx-auto animate-pulse">
+        💧
+      </div>
+      <div>
+        <h3 class="text-xl font-extrabold text-cyan-400" data-i18n="alertModalHydrationTitle">💧 20-MINUTE HYDRATION BREAK!</h3>
+        <p class="text-xs text-slate-300 mt-2" data-i18n="alertModalHydrationMsg">Extreme heat advisory active. Stop work immediately for a 2-minute water break. Drink clean water to prevent heat illness.</p>
+      </div>
+
+      <div class="flex items-center gap-3 pt-2">
+        <button id="ack-hydration-btn" class="flex-1 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs uppercase shadow">
+          Drank 250ml Water (+20 pts)
+        </button>
+        <button id="snooze-hydration-btn" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700">
+          Snooze 5 Min
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: USER LOGIN & PROFILE SWITCHER       -->
+  <!-- ========================================== -->
+  <div id="login-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🪪</span>
+          <h3 class="font-bold text-base text-white" data-i18n="loginTitle">Sign In to Safety Portal</h3>
+        </div>
+        <button id="close-login-btn" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <p class="text-xs text-slate-400" data-i18n="loginDesc">Select a demo profile or enter your construction ID to track your safety points and badges.</p>
+
+      <!-- Quick Demo Profiles -->
+      <div class="space-y-2">
+        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="quickProfiles">Or Quick Login with Demo Profiles:</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          
+          <div class="demo-login-card p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 flex items-center gap-3 cursor-pointer transition-all" data-user-id="WRK-101">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="w-9 h-9 rounded-full object-cover" alt="Ahmed" />
+            <div class="truncate">
+              <div class="font-bold text-xs text-white">Ahmed Al-Mansoor</div>
+              <div class="text-[10px] text-amber-400">860 pts • #2 Rank</div>
+            </div>
+          </div>
+
+          <div class="demo-login-card p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 flex items-center gap-3 cursor-pointer transition-all" data-user-id="WRK-104">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150" class="w-9 h-9 rounded-full object-cover" alt="Priya" />
+            <div class="truncate">
+              <div class="font-bold text-xs text-white">Priya Sharma 👑</div>
+              <div class="text-[10px] text-yellow-400">920 pts • #1 Champion</div>
+            </div>
+          </div>
+
+          <div class="demo-login-card p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 flex items-center gap-3 cursor-pointer transition-all" data-user-id="WRK-102">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" class="w-9 h-9 rounded-full object-cover" alt="Carlos" />
+            <div class="truncate">
+              <div class="font-bold text-xs text-white">Carlos Rodriguez</div>
+              <div class="text-[10px] text-slate-400">740 pts • Scaffolding</div>
+            </div>
+          </div>
+
+          <div class="demo-login-card p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 flex items-center gap-3 cursor-pointer transition-all" data-user-id="WRK-105">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150" class="w-9 h-9 rounded-full object-cover" alt="Fatima" />
+            <div class="truncate">
+              <div class="font-bold text-xs text-white">Fatima Al-Zahra</div>
+              <div class="text-[10px] text-purple-400">810 pts • Safety Officer</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Custom Login Form -->
+      <form id="custom-login-form" class="space-y-3 border-t border-slate-800 pt-3">
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-400 mb-1" data-i18n="workerId">Worker ID / Badge #</label>
+            <input type="text" id="login-worker-id" placeholder="e.g. WRK-208" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:ring-1 focus:ring-amber-500" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Full Name</label>
+            <input type="text" id="login-worker-name" placeholder="Your Name" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:ring-1 focus:ring-amber-500" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-400 mb-1" data-i18n="selectRole">Select Role</label>
+          <select id="login-worker-role" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-slate-200">
+            <option value="Site Construction Worker" data-i18n="roleWorker">Site Construction Worker</option>
+            <option value="Site Safety Supervisor" data-i18n="roleSupervisor">Site Safety Supervisor</option>
+            <option value="Government Safety Inspector" data-i18n="roleInspector">Government Safety Inspector</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-all shadow" data-i18n="signInBtn">
+          Authenticate & Enter
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- APPLICATION JAVASCRIPT MODULES -->
+  <script src="js/translations.js"></script>
+  <script src="js/gamification.js"></script>
+  <script src="js/timers.js"></script>
+  <script src="js/safety-ai.js"></script>
+  <script src="js/ppe-checker.js"></script>
+  <script src="js/guide-bot.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
